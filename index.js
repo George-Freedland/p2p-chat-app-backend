@@ -22,9 +22,9 @@ io.on('connection', (socket) => {
     onlineUsers += 1;
     io.emit('online users', onlineUsers);
     
-    socket.on('chat message', ({message, username, color}) => {
-        console.log('Message received:', username, ':', message, ' - color: ', color);
-        io.emit('chat message', {message, username, color});
+    socket.on('chat message', ({message, username, color, formattedDate, formattedTime}) => {
+        console.log('Message received at:', formattedDate, formattedTime, 'From: ', username, ':', message, ' - color: ', color);
+        io.emit('chat message', { message, username, color, formattedDate, formattedTime });
     })
 
     socket.on('disconnect', () => {
