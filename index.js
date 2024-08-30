@@ -18,9 +18,9 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
     console.log('A user connected');
     
-    socket.on('chat message', (msg) => {
-        console.log('Message received:', msg);
-        io.emit('chat message', msg);
+    socket.on('chat message', ({message, username, color}) => {
+        console.log('Message received:', username, ':', message, ' - color: ', color);
+        io.emit('chat message', {message, username, color});
     })
 
     socket.on('disconnect', () => {
